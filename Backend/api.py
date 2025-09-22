@@ -1,26 +1,38 @@
-from google.cloud import storage
-import os
+from PIL import Image
+import numpy as np
 
-# Anonymous client since rs_storage_open is public
-client = storage.Client.create_anonymous_client()
-bucket = client.bucket("rs_storage_open")
 
-# Folder containing the photos
-prefix = "coral_bleaching/reef_support/UNAL_BLEACHING_TAYRONA/images/"
+def get_pixel_stats(mask_path):
+    """
+    Calculate pixel counts for a coral reef segmentation mask.
 
-# List all image files in that folder
-print(f"Listing images in: {prefix}")
-image_files = []
-for blob in bucket.list_blobs(prefix=prefix):
-    if blob.name.lower().endswith((".jpg", ".jpeg", ".png")):
-        image_files.append(blob.name)
-        print(blob.name)
+    Labels:
+        0 = background
+        1 = healthy coral
+        2 = bleached coral
+        (3 = dead coral, optional)
+    """
+    # Load mask as numpy array
+    mask = np.array(Image.open(mask_path))
+    height, width = mask.shape
+    total_pixels = height * width
 
-print(f"\nTotal images found: {len(image_files)}")
+    # Counts
+    pix_bg = np.sum(mask == 0)
+    pix_healthy = np.sum(mask == 1)
+    pix_bleached = np.sum(mask == 2)
+    pix_dead = np.sum(mask == 3) if np.any(mask == 3) else 0  # optional
 
-# Example: download the first image
-if image_files:
-    blob = bucket.blob(image_files[0])
-    local_filename = os.path.basename(image_files[0])  # keep original name
-    blob.download_to_filename(local_filename)
-    print(f"Downloaded {image_files[0]} → {local_filename}")
+    return {
+        "file": mask_path,
+        "width": width,
+        "height": height,
+        "total_pixels": total_pixels,
+        "pix_bg": pix_bg,
+        "pix_healthy": pix_healthy,
+        "pix_bleached": pix_bleached,
+        "pix_dead": pix_dead
+    }
+
+
+print(get_pixel_stats("masks_multi/c1_bc_em_t1_29nov24_cgomez_corr.png"))
