@@ -1,0 +1,5 @@
+path: C:/Users/20231807/Documents/GitHub/Cap_coral_reefs/New_version_of_the_project
+train: C:/Users/20231807/Documents/GitHub/Cap_coral_reefs/New_version_of_the_project/splits/train.txt
+val:   C:/Users/20231807/Documents/GitHub/Cap_coral_reefs/New_version_of_the_project/splits/val.txt
+test:  C:/Users/20231807/Documents/GitHub/Cap_coral_reefs/New_version_of_the_project/splits/test.txt
+names: [hard_coral, soft_coral]
