@@ -8,6 +8,7 @@ import argparse, os, glob
 import pandas as pd
 from ultralytics import YOLO
 
+
 def parse_args():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data",  default="data.yaml", help="Path to data.yaml")
