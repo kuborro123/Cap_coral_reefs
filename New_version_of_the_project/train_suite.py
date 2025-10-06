@@ -30,7 +30,7 @@ def parse_args():
     # === CHANGE: Training configurations - Format: "run_name:path/to/train.txt" ===
     # Example: ["baseline:splits/train_soft_1to1.txt", "augmented:splits/train_soft_1to10.txt"]
     # The "baseline" part becomes the folder name (e.g., "baseline_s0")
-    ap.add_argument("--names", nargs="+", default=["baseline:splits/train_soft_1to1.txt"],
+    ap.add_argument("--names", nargs="+", default=["baseline:splits/train.txt"],
                     help="Pairs name:train_list.txt (space separated)")
     return ap.parse_args()
 
