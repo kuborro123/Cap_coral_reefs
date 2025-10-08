@@ -25,7 +25,7 @@ def parse_args():
     ap.add_argument("--seeds", type=int, nargs="+", default=[0])
 
     # === CHANGE: GPU device (e.g., "0" for cuda:0, None for auto) ===
-    ap.add_argument("--device", default=None, help="CUDA device index, e.g. 0; leave empty for auto")
+    ap.add_argument("--device", default="0", help="CUDA device index, e.g. 0; leave empty for auto")
 
     # === CHANGE: Training configurations - Format: "run_name:path/to/train.txt" ===
     # Example: ["baseline:splits/train_soft_1to1.txt", "augmented:splits/train_soft_1to10.txt"]
