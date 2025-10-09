@@ -10,7 +10,7 @@ imgsz: 640
 save: true
 save_period: -1
 cache: false
-device: cpu
+device: '0'
 workers: 2
 project: runs
 name: realistic__oversampling_s0
@@ -103,4 +103,4 @@ auto_augment: randaugment
 erasing: 0.4
 cfg: null
 tracker: botsort.yaml
-save_dir: C:\Users\20233416\Documents\DC1\Cap_coral_reefs\New_version_of_the_project\runs\realistic__oversampling_s0
+save_dir: C:\Users\20233416\Documents\DC1\Cap_coral_reefs\New_version_of_the_project\runs\realistic__oversampling_s05
